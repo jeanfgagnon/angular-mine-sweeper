@@ -1,4 +1,4 @@
-export default class CellModel {
+export class CellModel {
   public CellId = '';
   public CellNo = 0;
   public IsRedFlagVisible = false;
