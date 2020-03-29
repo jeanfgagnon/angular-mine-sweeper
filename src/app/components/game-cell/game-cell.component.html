@@ -1,1 +1,10 @@
-<p>game-cell works!</p>
+<div 
+  (click)="handleClick(false)"
+  (contextmenu)="handleClick(true)" 
+  [ngStyle]="CellDataModel.CellStyle"
+  [ngClass]="'game-cell ' + CellDataModel.CssClass"
+>
+  <img *ngIf="CellDataModel.IsRedFlagVisible" src="assets/flag-cell.png" class='flag-img' alt='Flag' />
+  <span *ngIf="!CellDataModel.IsRedFlagVisible">{{ CellDataModel.Text }}</span>
+
+</div>

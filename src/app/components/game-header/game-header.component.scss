@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'DS-Digital Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('DS-Digital Bold'), url('/assets/DS-DIGIB.woff') format('woff');
+  }
+  
+  #game-header {
+    font-size: 9pt;
+    font-family: Arial;
+    border-bottom: solid 2px black;
+  }
+  
+  .interieur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 11pt;
+    color: black;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    justify-content: space-between;
+  }
+  
+  .digit-box {
+    font-family: 'DS-Digital Bold';
+    font-weight: normal;
+    font-weight: normal;
+    font-size: 42px;
+    color: red;
+    width: 70px;
+    height: 40px;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    display: inline-block;
+  }
+  
+  .smiley-button {
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background-color: #a3a3a3;
+  }
+  
+  .gear-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    cursor: pointer;
+    background-image: url('/assets/gear.png');
+    background-size: 24px;
+  }
+  
+  .gear-icon:hover {
+    background-image: url('/assets/gear-bold.png');
+  }
+  
+  .start-pos {
+    justify-self: start;
+  }
+  
+  .end-pos {
+    justify-self: end;
+  }
+  
+  .game-over {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13pt;
+    color: red;
+    font-weight: bold;
+  }

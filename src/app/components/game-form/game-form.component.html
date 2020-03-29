@@ -1,8 +1,22 @@
-<div id='divGameForm'>
-    <app-game-header></app-game-header>
-    <app-game-board></app-game-board>
-  </div>
+<div id='divGameForm' [ngStyle]="{'max-width.px': formWidth()}">
+    
+  <app-game-header 
+    [FlagCount]="flagCount" 
+    [Elapsed]="elapsed"
+    [GameOver]="gameOver"
+    [GameOption]="GameOption"
+    (toggleConfigClick)="onToggleConfigClick()"
+    (restartClick)="onRestartClick()"
+  ></app-game-header>
 
-  <div id='divConfigPanel'>
-    <app-game-config></app-game-config>
-  </div>
+  <app-game-board
+    [GameOption]="GameOption"
+    [Board]="board"
+    (click)="onCellClicked"
+  ></app-game-board>
+
+</div>
+
+<div id='divConfigPanel'>
+  <app-game-config></app-game-config>
+</div>

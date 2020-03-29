@@ -1,1 +1,28 @@
-<p>game-header works!</p>
+<div id='game-header'>
+    <div class="interieur">
+      <div class='start-pos'>
+        Angular MineSweeper v1.0 -
+        Cols: {{GameOption.NbCol}} &nbsp;
+        Rows: {{GameOption.NbRow}} &nbsp;
+        Bombs: {{GameOption.NbBomb}} &nbsp;
+      </div>
+      <div class='end-pos'>
+        <div class='gear-icon' (click)="gearClicked()"></div>          
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="start-pos">
+        <div class="digit-box">{{padNum(GameOption.NbBomb - FlagCount)}}</div>
+        <span class='game-over'>{{this.gameStatus()}}</span>
+      </div>
+      <div>
+        <div class='smiley-button' title='Restart game' (click)="smileyClicked()">
+          <img *ngIf="!GameOver" src='assets/smiley-smile.png' alt='Smile' />
+          <img *ngIf="GameOver"  src='assets/smiley-sad.png' alt='Sad' />
+        </div>
+      </div>
+      <div class="end-pos"><div class="digit-box">{{padNum(Elapsed)}}</div></div>
+    </div>
+
+  </div>

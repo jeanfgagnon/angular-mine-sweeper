@@ -1,1 +1,19 @@
-<p>game-board works!</p>
+<div id="game-board">
+  <div class='game-grid'>
+    <table (contextmenu)="(e): void => { e.preventDefault(); }">
+      <tbody>
+        
+        {Array.from(Array(this.props.gameOption.NbRow)).map((tr, tr_i) =>
+        <tr key={tr_i}>
+          {Array.from(Array(this.props.gameOption.NbCol)).map((a, td_i) =>
+          <td key={td_i}>
+            <GameCell key={`${tr_i}_${td_i}`} OnClick={this.onCellClicked} cellModel={this.getCell(tr_i, td_i)}>
+            </GameCell>
+          </td>
+          )}
+        </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+</div>
