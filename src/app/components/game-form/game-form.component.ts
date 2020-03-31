@@ -35,6 +35,10 @@ export class GameFormComponent implements OnInit {
     console.log('on restart le jeu');
   }
 
+  onCellClicked = (isRightClick: boolean): void => {
+    console.log('%s click cell', (isRightClick ? "right" : "left") );
+  }
+  
   // helpers
 
   formWidth = (): number => {
@@ -57,7 +61,7 @@ export class GameFormComponent implements OnInit {
   } // initBoard
 
   // create and initialize one board cell
-  private createCellModel(index: number, rowNo: number, colNo: number): CellModel {
+  private createCellModel = (index: number, rowNo: number, colNo: number): CellModel => {
     const cell = new CellModel();
 
     cell.CellId = `cell_${rowNo + 1}_${colNo + 1}`;

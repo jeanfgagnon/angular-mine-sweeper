@@ -7,6 +7,7 @@ import { GameHeaderComponent } from './components/game-header/game-header.compon
 import { GameConfigComponent } from './components/game-config/game-config.component';
 import { GameBoardComponent } from './components/game-board/game-board.component';
 import { GameCellComponent } from './components/game-cell/game-cell.component';
+import { NoRightClickDirective } from './common/no-right-click.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { GameCellComponent } from './components/game-cell/game-cell.component';
     GameHeaderComponent,
     GameConfigComponent,
     GameBoardComponent,
-    GameCellComponent
+    GameCellComponent,
+    NoRightClickDirective
   ],
   imports: [
     BrowserModule

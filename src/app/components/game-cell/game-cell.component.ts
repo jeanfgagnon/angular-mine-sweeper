@@ -22,7 +22,9 @@ export class GameCellComponent implements OnInit {
 
   // event handlers
 
-  handleClick = (isRightClick: boolean): void => {
+  handleClick = (e: Event, isRightClick: boolean): void => {
+    e.stopPropagation();
+    e.preventDefault();
     this.click.emit(isRightClick);
   }
 
@@ -35,4 +37,4 @@ export class GameCellComponent implements OnInit {
     return this._cellDataModel;
   }
 
-}
+} // class

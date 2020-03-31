@@ -13,13 +13,33 @@ export class GameBoardComponent implements OnInit {
   private _gameOption: GameOption;
   private _board: CellModel[];
 
-  @Output() click: EventEmitter<boolean> = new EventEmitter<boolean>();
- 
-  constructor() { }
+  rowArray: number[];
+  colArray: number[];
 
+  @Output() click: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor() { 
+  }
+  
   // life cycle plumbing
   
   ngOnInit(): void {
+    // those two arrays are used only to loop tr & td in template.
+    this.rowArray = Array<number>(this.GameOption.NbRow).fill(0).map((x, i) => i);
+    this.colArray = Array<number>(this.GameOption.NbCol).fill(0).map((x, i) => i);
+  }
+
+  // event handlers
+
+  onCellClicked = (isRightClick: boolean) : void => {
+    this.click.emit(isRightClick); 
+  }
+
+  // helpers
+
+  getCell = (rowNo: number, colNo: number): CellModel => {
+    const index = (rowNo * this.GameOption.NbCol) + colNo;
+    return this.Board[index];
   }
 
   // properties
@@ -37,4 +57,5 @@ export class GameBoardComponent implements OnInit {
   get GameOption(): GameOption {
     return this._gameOption;
   }
-}
+
+} // class

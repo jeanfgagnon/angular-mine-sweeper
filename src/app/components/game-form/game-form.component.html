@@ -1,4 +1,4 @@
-<div id='divGameForm' [ngStyle]="{'max-width.px': formWidth()}">
+<div id='divGameForm' [ngStyle]="{'max-width.px': formWidth()}" appNoRightClick>
     
   <app-game-header 
     [FlagCount]="flagCount" 
@@ -12,7 +12,7 @@
   <app-game-board
     [GameOption]="GameOption"
     [Board]="board"
-    (click)="onCellClicked"
+    (click)="onCellClicked($event)"
   ></app-game-board>
 
 </div>

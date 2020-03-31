@@ -1,18 +1,15 @@
 <div id="game-board">
   <div class='game-grid'>
-    <table (contextmenu)="(e): void => { e.preventDefault(); }">
+    <table>
       <tbody>
-        
-        {Array.from(Array(this.props.gameOption.NbRow)).map((tr, tr_i) =>
-        <tr key={tr_i}>
-          {Array.from(Array(this.props.gameOption.NbCol)).map((a, td_i) =>
-          <td key={td_i}>
-            <GameCell key={`${tr_i}_${td_i}`} OnClick={this.onCellClicked} cellModel={this.getCell(tr_i, td_i)}>
-            </GameCell>
+        <tr *ngFor="let tr of rowArray; let tr_i=index">
+          <td *ngFor="let td of colArray; let td_i=index">
+            <app-game-cell
+              [CellDataModel]="getCell(tr_i, td_i)"
+              (click)="onCellClicked($event)"
+            ></app-game-cell>
           </td>
-          )}
         </tr>
-        )}
       </tbody>
     </table>
   </div>

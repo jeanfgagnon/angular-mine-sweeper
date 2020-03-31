@@ -1,6 +1,7 @@
 <div 
-  (click)="handleClick(false)"
-  (contextmenu)="handleClick(true)" 
+  [title]="CellDataModel.CellId"
+  (click)="handleClick($event, false)"
+  (contextmenu)="handleClick($event, true)" 
   [ngStyle]="CellDataModel.CellStyle"
   [ngClass]="'game-cell ' + CellDataModel.CssClass"
 >
