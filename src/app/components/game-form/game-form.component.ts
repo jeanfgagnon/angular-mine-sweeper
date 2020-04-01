@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 
 import { GameOption } from 'src/app/common/GameOption';
 import { CellModel } from 'src/app/common/CellModel';
@@ -8,7 +8,7 @@ import { CellModel } from 'src/app/common/CellModel';
   templateUrl: './game-form.component.html',
   styleUrls: ['./game-form.component.scss']
 })
-export class GameFormComponent implements OnInit {
+export class GameFormComponent implements OnInit, AfterViewInit {
 
   private _gameOption: GameOption;
 
@@ -17,7 +17,10 @@ export class GameFormComponent implements OnInit {
   elapsed = 0;
   gameOver = false;
 
-  constructor() { }
+  @ViewChild('gameForm', { read: ElementRef }) gameForm: ElementRef;
+  @ViewChild('configPanel', { read: ElementRef }) configPanel: ElementRef;
+
+  constructor(private renderer: Renderer2) { }
 
   // life cycle plumbing
 
@@ -25,10 +28,21 @@ export class GameFormComponent implements OnInit {
     this.initBoard();
   }
 
+  ngAfterViewInit(): void {
+    this.positionConfig();
+  }
+
   // event handlers
 
   onToggleConfigClick = (): void => {
-    console.log('on toggle la config de mes deuces');
+    if (this.configPanel.nativeElement.className === 'open') {
+      this.renderer.addClass(this.configPanel.nativeElement, 'close');
+      this.renderer.removeClass(this.configPanel.nativeElement, 'open');
+    }
+    else {
+      this.renderer.addClass(this.configPanel.nativeElement, 'open');
+      this.renderer.removeClass(this.configPanel.nativeElement, 'close');
+    }
   }
 
   onRestartClick = (): void => {
@@ -36,9 +50,10 @@ export class GameFormComponent implements OnInit {
   }
 
   onCellClicked = (isRightClick: boolean): void => {
-    console.log('%s click cell', (isRightClick ? "right" : "left") );
+    // rendu ici. a vendredi. mercredi gin? jeudi gin?  vendredi jamais de gin!
+    console.log('%s click cell', (isRightClick ? "right" : "left"));
   }
-  
+
   // helpers
 
   formWidth = (): number => {
@@ -74,6 +89,16 @@ export class GameFormComponent implements OnInit {
 
     return cell;
   } // createCellModel
+
+
+  private positionConfig(): void {
+    const gameFormRect: DOMRect = this.gameForm.nativeElement.getBoundingClientRect();
+    const configPanelRect: DOMRect = this.configPanel.nativeElement.getBoundingClientRect();
+
+    this.renderer.setStyle(this.configPanel.nativeElement, 'top', (gameFormRect.top + 30) + 'px');
+    this.renderer.setStyle(this.configPanel.nativeElement, 'left', (gameFormRect.right - configPanelRect.width) + 'px');
+    this.renderer.setStyle(this.configPanel.nativeElement, 'visibility', 'visible');
+  }
 
   // properties 
 

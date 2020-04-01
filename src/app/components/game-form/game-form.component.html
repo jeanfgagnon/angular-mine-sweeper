@@ -1,4 +1,7 @@
-<div id='divGameForm' [ngStyle]="{'max-width.px': formWidth()}" appNoRightClick>
+<div id='divGameForm'
+  #gameForm
+  [ngStyle]="{'max-width.px': formWidth()}" 
+  appNoRightClick>
     
   <app-game-header 
     [FlagCount]="flagCount" 
@@ -17,6 +20,6 @@
 
 </div>
 
-<div id='divConfigPanel'>
+<div id='divConfigPanel' #configPanel>
   <app-game-config></app-game-config>
 </div>
