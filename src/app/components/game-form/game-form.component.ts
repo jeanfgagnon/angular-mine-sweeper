@@ -6,7 +6,10 @@ import { CellModel } from 'src/app/common/CellModel';
 @Component({
   selector: 'app-game-form',
   templateUrl: './game-form.component.html',
-  styleUrls: ['./game-form.component.scss']
+  styleUrls: ['./game-form.component.scss'],
+  host: {
+    '(window:resize)': 'onWindowResize($event)'
+  }
 })
 export class GameFormComponent implements OnInit, AfterViewInit {
 
@@ -34,7 +37,11 @@ export class GameFormComponent implements OnInit, AfterViewInit {
 
   // event handlers
 
-  onToggleConfigClick = (): void => {
+  public onWindowResize(): void {
+    this.positionConfig();
+  }
+
+  public onToggleConfigClick = (): void => {
     if (this.configPanel.nativeElement.className === 'open') {
       this.renderer.addClass(this.configPanel.nativeElement, 'close');
       this.renderer.removeClass(this.configPanel.nativeElement, 'open');
@@ -45,18 +52,18 @@ export class GameFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onRestartClick = (): void => {
+  public onRestartClick = (): void => {
     console.log('on restart le jeu');
   }
 
-  onCellClicked = (isRightClick: boolean): void => {
+  public onCellClicked = (isRightClick: boolean): void => {
     // rendu ici. a vendredi. mercredi gin? jeudi gin?  vendredi jamais de gin!
     console.log('%s click cell', (isRightClick ? "right" : "left"));
   }
 
   // helpers
 
-  formWidth = (): number => {
+  public formWidth = (): number => {
     return this.GameOption.NbCol * 27 + 10;
   }
 
