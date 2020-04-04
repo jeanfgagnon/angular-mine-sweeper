@@ -8,6 +8,7 @@ import { GameConfigComponent } from './components/game-config/game-config.compon
 import { GameBoardComponent } from './components/game-board/game-board.component';
 import { GameCellComponent } from './components/game-cell/game-cell.component';
 import { NoRightClickDirective } from './common/no-right-click.directive';
+import { NoClickDirective } from './common/no-click.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NoRightClickDirective } from './common/no-right-click.directive';
     GameConfigComponent,
     GameBoardComponent,
     GameCellComponent,
-    NoRightClickDirective
+    NoRightClickDirective,
+    NoClickDirective
   ],
   imports: [
     BrowserModule

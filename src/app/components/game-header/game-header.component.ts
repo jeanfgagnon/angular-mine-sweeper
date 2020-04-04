@@ -67,7 +67,6 @@ export class GameHeaderComponent implements OnInit {
   
   @Input() set GameOption(value: GameOption) {
     this._gameOption = value;
-    console.log("Rendu ici. %s", JSON.stringify(this._gameOption));
   }
   get GameOption(): GameOption {
     return this._gameOption;

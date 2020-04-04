@@ -17,7 +17,7 @@ export class GameBoardComponent implements OnInit {
   rowArray: number[];
   colArray: number[];
 
-  @Output() click: EventEmitter<CellClickPayload> = new EventEmitter<CellClickPayload>();
+  @Output() cellClick: EventEmitter<CellClickPayload> = new EventEmitter<CellClickPayload>();
 
   constructor() { 
   }
@@ -33,7 +33,7 @@ export class GameBoardComponent implements OnInit {
   // event handlers
 
   onCellClicked = (ccp: CellClickPayload) : void => {
-    this.click.emit(ccp); 
+    this.cellClick.emit(ccp); 
   }
 
   // helpers

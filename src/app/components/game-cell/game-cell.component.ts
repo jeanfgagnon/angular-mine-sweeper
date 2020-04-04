@@ -27,7 +27,7 @@ export class GameCellComponent implements OnInit {
     const ccp = new CellClickPayload();
     ccp.BoardIndex = this.CellDataModel.CellNo;
     ccp.IsRightClick =  isRightClick;
-
+ 
     e.stopPropagation();
     e.preventDefault();
     this.click.emit(ccp);
