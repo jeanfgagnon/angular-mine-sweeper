@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { GameOption } from 'src/app/common/GameOption';
 import { CellModel } from 'src/app/common/CellModel';
+import { CellClickPayload } from 'src/app/common/CellClickPayload';
 
 @Component({
   selector: 'app-game-board',
@@ -16,7 +17,7 @@ export class GameBoardComponent implements OnInit {
   rowArray: number[];
   colArray: number[];
 
-  @Output() click: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() click: EventEmitter<CellClickPayload> = new EventEmitter<CellClickPayload>();
 
   constructor() { 
   }
@@ -31,8 +32,8 @@ export class GameBoardComponent implements OnInit {
 
   // event handlers
 
-  onCellClicked = (isRightClick: boolean) : void => {
-    this.click.emit(isRightClick); 
+  onCellClicked = (ccp: CellClickPayload) : void => {
+    this.click.emit(ccp); 
   }
 
   // helpers

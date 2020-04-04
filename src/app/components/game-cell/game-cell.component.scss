@@ -14,6 +14,27 @@
   cursor: pointer;
 }
 
+.cellBomb {
+  background-image: url(/assets/bomb-cell.png);
+  background-color: #a3a3a3;
+  background-position: center center;
+  background-size: 16px;
+}
+
+.cellBombCur {
+  background-image: url(/assets/bomb-cell.png);
+  background-color: red;
+  background-position: center center;
+  background-size: 16px;
+}
+
+.badCellBomb {
+  background-image: url(/assets/bad-bomb-cell.png);
+  background-color: #a3a3a3;
+  background-position: center center;
+  background-size: 16px;
+}
+
 .flag-img {
   height: 14px;
 }
@@ -21,4 +42,8 @@
 .cellUnclick {
   background-image: url('/assets/game-cell.png');
   background-size: cover;
+}
+
+.empty-cell {
+  background-color: #a3a3a3;
 }

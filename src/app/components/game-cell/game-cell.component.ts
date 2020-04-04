@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { CellModel } from 'src/app/common/CellModel';
+import { CellClickPayload } from 'src/app/common/CellClickPayload';
 
 @Component({
   selector: 'app-game-cell',
@@ -11,7 +12,7 @@ export class GameCellComponent implements OnInit {
 
   private _cellDataModel: CellModel;
 
-  @Output() click: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() click: EventEmitter<CellClickPayload> = new EventEmitter<CellClickPayload>();
 
   constructor() { }
   
@@ -23,9 +24,13 @@ export class GameCellComponent implements OnInit {
   // event handlers
 
   handleClick = (e: Event, isRightClick: boolean): void => {
+    const ccp = new CellClickPayload();
+    ccp.BoardIndex = this.CellDataModel.CellNo;
+    ccp.IsRightClick =  isRightClick;
+
     e.stopPropagation();
     e.preventDefault();
-    this.click.emit(isRightClick);
+    this.click.emit(ccp);
   }
 
   // properties
