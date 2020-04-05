@@ -10,7 +10,8 @@
         Rows
       </div>
       <div class='gc-input-zone'>
-        <input type='number' id='txtRow' name='txtRow' class='gc-input' [(ngModel)]="GameOption.NbRow" (change)="inputModified()" />
+        <input type='number' id='txtRow' name='txtRow' class='gc-input' min='10' max='100'
+          [(ngModel)]="GameOption.NbRow" (change)="inputModified()" />
       </div>
     </div>
 
@@ -19,7 +20,8 @@
         Columns
       </div>
       <div class='gc-input-zone'>
-        <input type='number' id='txtCol' name='txtCol' class='gc-input' [(ngModel)]="GameOption.NbCol" (change)="inputModified()" />
+        <input type='number' id='txtCol' name='txtCol' class='gc-input' min='10' max='100'
+          [(ngModel)]="GameOption.NbCol" (change)="inputModified()" />
       </div>
     </div>
 
@@ -28,7 +30,8 @@
         Bombs
       </div>
       <div class='gc-input-zone'>
-        <input type='number' id='txtBomb' name='txtBomb' class='gc-input' [(ngModel)]="GameOption.NbBomb" (change)="inputModified()" />
+        <input type='number' id='txtBomb' name='txtBomb' class='gc-input' min='10' 
+          [(ngModel)]="GameOption.NbBomb" (change)="inputModified()" />
       </div>
     </div>
 
