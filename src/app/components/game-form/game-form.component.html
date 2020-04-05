@@ -1,5 +1,4 @@
-<div id='divGameForm'
-  #gameForm
+<div id='divGameForm' #gameForm
   [ngStyle]="{'max-width.px': formWidth()}" 
   appNoRightClick>
     
@@ -21,5 +20,8 @@
 </div>
 
 <div id='divConfigPanel' #configPanel>
-  <app-game-config></app-game-config>
+  <app-game-config
+    [GameOption]="GameOption"
+    (optionChanged)="onOptionChanged($event)"
+  ></app-game-config>
 </div>

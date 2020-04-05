@@ -46,6 +46,12 @@ export class GameFormComponent implements OnInit, AfterViewInit {
     this.positionConfig();
   }
 
+  public onOptionChanged = (go: GameOption) => {
+    console.group("-- Game Option Changed (Game Form) --");
+    console.log(JSON.stringify(go));
+    console.groupEnd();
+  }
+
   public onToggleConfigClick = (): void => {
     if (this.configPanel.nativeElement.className === 'open') {
       this.renderer.addClass(this.configPanel.nativeElement, 'close');

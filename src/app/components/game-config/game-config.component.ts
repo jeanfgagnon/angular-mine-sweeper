@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { GameOption } from 'src/app/common/GameOption';
 
 @Component({
   selector: 'app-game-config',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameConfigComponent implements OnInit {
 
+  private _gameOption: GameOption;
+
+  @Output() optionChanged = new EventEmitter<GameOption>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  // event handlers
+  inputModified = (): void => {
+    this.optionChanged.emit(this.GameOption);
+  }
+
+  // properties
+
+  @Input() set GameOption(value: GameOption) {
+    this._gameOption = Object.assign({}, value);
+  }
+  get GameOption(): GameOption {
+    return this._gameOption;
   }
 
 }
