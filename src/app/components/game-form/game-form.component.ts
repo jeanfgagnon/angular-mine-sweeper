@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Renderer2, AfterViewChecked } from '@angular/core';
 
 import { GameOption } from 'src/app/common/GameOption';
 import { CellModel } from 'src/app/common/CellModel';
@@ -13,7 +13,7 @@ import { CellCoords } from 'src/app/common/CellCoords';
     '(window:resize)': 'onWindowResize($event)'
   }
 })
-export class GameFormComponent implements OnInit, AfterViewInit {
+export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   private _gameOption: GameOption;
 
@@ -40,6 +40,10 @@ export class GameFormComponent implements OnInit, AfterViewInit {
     this.positionConfig();
   }
 
+  ngAfterViewChecked(): void {
+    this.positionConfig();
+  }
+
   // event handlers
 
   public onWindowResize(): void {
@@ -49,7 +53,6 @@ export class GameFormComponent implements OnInit, AfterViewInit {
   public onOptionChanged = (go: GameOption) => {
     this._gameOption = Object.assign({}, go);
     this.restartGame();
-    setTimeout(() => this.positionConfig(), 120);
   }
 
   public onToggleConfigClick = (): void => {
