@@ -47,9 +47,9 @@ export class GameFormComponent implements OnInit, AfterViewInit {
   }
 
   public onOptionChanged = (go: GameOption) => {
-    console.group("-- Game Option Changed (Game Form) --");
-    console.log(JSON.stringify(go));
-    console.groupEnd();
+    this._gameOption = Object.assign({}, go);
+    this.restartGame();
+    setTimeout(() => this.positionConfig(), 120);
   }
 
   public onToggleConfigClick = (): void => {
@@ -64,13 +64,7 @@ export class GameFormComponent implements OnInit, AfterViewInit {
   }
 
   public onRestartClick = (): void => {
-    clearInterval(this.timerHandler);
-    this.timerHandler = 0;
-    this.initBoard();
-    this.gameOver = false;
-    this.running = false;
-    this.flagCount = 0;
-    this.elapsed = 0;
+    this.restartGame();
   }
 
   public onCellClicked = (ccp: CellClickPayload): void => {
@@ -89,6 +83,16 @@ export class GameFormComponent implements OnInit, AfterViewInit {
   }
 
   // private code
+
+  private restartGame(): void {
+    clearInterval(this.timerHandler);
+    this.timerHandler = 0;
+    this.initBoard();
+    this.gameOver = false;
+    this.running = false;
+    this.flagCount = 0;
+    this.elapsed = 0;
+  }
 
   private cellLeftClick(index: number): void {
     if (!this.gameOver) {
@@ -413,7 +417,6 @@ export class GameFormComponent implements OnInit, AfterViewInit {
 
     return cell;
   } // createCellModel
-
 
   private positionConfig(): void {
     const gameFormRect: DOMRect = this.gameForm.nativeElement.getBoundingClientRect();

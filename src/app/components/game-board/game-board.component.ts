@@ -26,8 +26,7 @@ export class GameBoardComponent implements OnInit {
   
   ngOnInit(): void {
     // those two arrays are used only to loop tr & td in template.
-    this.rowArray = Array<number>(this.GameOption.NbRow).fill(0).map((x, i) => i);
-    this.colArray = Array<number>(this.GameOption.NbCol).fill(0).map((x, i) => i);
+    this.initBoardArray();
   }
 
   // event handlers
@@ -43,6 +42,13 @@ export class GameBoardComponent implements OnInit {
     return this.Board[index];
   }
 
+  // privates 
+
+  private initBoardArray(): void {
+    this.rowArray = Array<number>(this.GameOption.NbRow).fill(0).map((x, i) => i);
+    this.colArray = Array<number>(this.GameOption.NbCol).fill(0).map((x, i) => i);
+  }
+
   // properties
 
   @Input() set Board(value: CellModel[]) {
@@ -54,6 +60,7 @@ export class GameBoardComponent implements OnInit {
 
   @Input() set GameOption(value: GameOption) {
     this._gameOption = value;
+    this.initBoardArray();
   }
   get GameOption(): GameOption {
     return this._gameOption;
