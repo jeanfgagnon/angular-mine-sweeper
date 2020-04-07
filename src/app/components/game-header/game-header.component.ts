@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { GameOption } from 'src/app/common/GameOption';
 
@@ -7,7 +7,7 @@ import { GameOption } from 'src/app/common/GameOption';
   templateUrl: './game-header.component.html',
   styleUrls: ['./game-header.component.scss']
 })
-export class GameHeaderComponent implements OnInit {
+export class GameHeaderComponent {
 
   private _gameOption: GameOption;
   private _flagCount = 0;
@@ -18,9 +18,6 @@ export class GameHeaderComponent implements OnInit {
   @Output() restartClick: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   // event handlers
 

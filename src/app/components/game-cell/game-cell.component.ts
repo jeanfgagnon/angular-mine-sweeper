@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { CellModel } from 'src/app/common/CellModel';
 import { CellClickPayload } from 'src/app/common/CellClickPayload';
@@ -8,18 +8,15 @@ import { CellClickPayload } from 'src/app/common/CellClickPayload';
   templateUrl: './game-cell.component.html',
   styleUrls: ['./game-cell.component.scss']
 })
-export class GameCellComponent implements OnInit {
+export class GameCellComponent {
 
   private _cellDataModel: CellModel;
 
-  @Output() click: EventEmitter<CellClickPayload> = new EventEmitter<CellClickPayload>();
+  @Output() cellClick: EventEmitter<CellClickPayload> = new EventEmitter<CellClickPayload>();
 
   constructor() { }
   
   // life cycle plumbing
-
-  ngOnInit(): void {
-  }
 
   // event handlers
 
@@ -30,7 +27,7 @@ export class GameCellComponent implements OnInit {
  
     e.stopPropagation();
     e.preventDefault();
-    this.click.emit(ccp);
+    this.cellClick.emit(ccp);
   }
 
   // properties

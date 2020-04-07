@@ -25,8 +25,8 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
   azimuth = ['ne', 'n', 'nw', 'w', 'e', 'sw', 's', 'se'];
   timerHandler: any = 0;
 
-  @ViewChild('gameForm', { read: ElementRef }) gameForm: ElementRef;
-  @ViewChild('configPanel', { read: ElementRef }) configPanel: ElementRef;
+  @ViewChild('gameForm') gameForm: ElementRef;
+  @ViewChild('configPanel') configPanel: ElementRef;
 
   constructor(private renderer: Renderer2) { }
 

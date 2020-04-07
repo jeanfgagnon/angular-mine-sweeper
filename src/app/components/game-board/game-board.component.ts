@@ -19,20 +19,19 @@ export class GameBoardComponent implements OnInit {
 
   @Output() cellClick: EventEmitter<CellClickPayload> = new EventEmitter<CellClickPayload>();
 
-  constructor() { 
+  constructor() {
   }
-  
+
   // life cycle plumbing
-  
+
   ngOnInit(): void {
-    // those two arrays are used only to loop tr & td in template.
     this.initBoardArray();
   }
 
   // event handlers
 
-  onCellClicked = (ccp: CellClickPayload) : void => {
-    this.cellClick.emit(ccp); 
+  onCellClicked = (ccp: CellClickPayload): void => {
+    this.cellClick.emit(ccp);
   }
 
   // helpers
@@ -45,6 +44,7 @@ export class GameBoardComponent implements OnInit {
   // privates 
 
   private initBoardArray(): void {
+    // those two arrays are used only to loop tr & td in template.
     this.rowArray = Array<number>(this.GameOption.NbRow).fill(0).map((x, i) => i);
     this.colArray = Array<number>(this.GameOption.NbCol).fill(0).map((x, i) => i);
   }

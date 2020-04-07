@@ -6,7 +6,7 @@
           <td *ngFor="let td of colArray; let td_i=index">
             <app-game-cell
               [CellDataModel]="getCell(tr_i, td_i)"
-              (click)="onCellClicked($event)"
+              (cellClick)="onCellClicked($event)"
             ></app-game-cell>
           </td>
         </tr>
