@@ -20,7 +20,7 @@ export class GameCellComponent {
 
   // event handlers
 
-  handleClick = (e: Event, isRightClick: boolean): void => {
+  public handleClick = (e: Event, isRightClick: boolean): void => {
     const ccp = new CellClickPayload();
     ccp.BoardIndex = this.CellDataModel.CellNo;
     ccp.IsRightClick =  isRightClick;

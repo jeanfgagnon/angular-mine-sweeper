@@ -21,17 +21,17 @@ export class GameHeaderComponent {
 
   // event handlers
 
-  gearClicked = () : void => {
+  public gearClicked = () : void => {
     this.toggleConfigClick.emit();
   }
 
-  smileyClicked = () : void => {
+  public smileyClicked = () : void => {
     this.restartClick.emit();
   }
 
   // helpers
 
-  gameStatus = () : string => {
+  public gameStatus = () : string => {
     let rv = '';
     if (this.GameOver) {
       if (this.Elapsed >= this.GameOption.MaxSec) {
@@ -45,7 +45,7 @@ export class GameHeaderComponent {
     return rv;
   }
 
-  padNum = (num: number): string => {
+  public padNum = (num: number): string => {
     let rv: string;
     if (num < 10) {
       rv = '00' + num.toString();

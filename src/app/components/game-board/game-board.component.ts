@@ -24,19 +24,19 @@ export class GameBoardComponent implements OnInit {
 
   // life cycle plumbing
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initBoardArray();
   }
 
   // event handlers
 
-  onCellClicked = (ccp: CellClickPayload): void => {
+  public onCellClicked = (ccp: CellClickPayload): void => {
     this.cellClick.emit(ccp);
   }
 
   // helpers
 
-  getCell = (rowNo: number, colNo: number): CellModel => {
+  public getCell = (rowNo: number, colNo: number): CellModel => {
     const index = (rowNo * this.GameOption.NbCol) + colNo;
     return this.Board[index];
   }

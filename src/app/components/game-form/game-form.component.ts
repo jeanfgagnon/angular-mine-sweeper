@@ -32,15 +32,15 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
 
   // life cycle plumbing
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initBoard();
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.positionConfig();
   }
 
-  ngAfterViewChecked(): void {
+  public ngAfterViewChecked(): void {
     this.positionConfig();
   }
 
@@ -130,7 +130,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
     }
   } // cellLeftClick
 
-  cellRightClick(index: number): void {
+  private cellRightClick(index: number): void {
     if (this.running && !this.gameOver && !this.board[index].IsCleared) {
       this.board[index].IsRedFlagVisible = !this.board[index].IsRedFlagVisible;
 
@@ -149,7 +149,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
     }
   }
 
-  incrementElapsed(): void {
+  private incrementElapsed(): void {
     if (this.elapsed < this.GameOption.MaxSec) {
       this.elapsed++;
     }
@@ -165,12 +165,12 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
   }
 
   // set bombs on board on first click
-  bombSetup(firstClickedCellNo: number): void {
+  private bombSetup(firstClickedCellNo: number): void {
     this.setBombs(firstClickedCellNo);
     this.moveNearBombs(firstClickedCellNo);
   }
 
-  getNearBombCount(coords: CellCoords): number {
+  private getNearBombCount(coords: CellCoords): number {
     let nbBomb = 0;
     const surroundingBoardPos: number[] = this.computeSurroundingBoardPos(coords);
     surroundingBoardPos.forEach(n => {
@@ -205,7 +205,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
     }
   }
 
-  moveNearBombs(firstClickedCellNo: number) {
+  private moveNearBombs(firstClickedCellNo: number) {
     const coords = this.getCellCoord(firstClickedCellNo);
     const surroundingBoardPos: number[] = this.computeSurroundingBoardPos(coords);
 
@@ -230,7 +230,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
     });
   }
 
-  getAziCoords(coords: CellCoords, aziStr: string): CellCoords {
+  private getAziCoords(coords: CellCoords, aziStr: string): CellCoords {
     const newCoords = new CellCoords();
 
     switch (aziStr) {
@@ -302,7 +302,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
     return newCoords;
   }
 
-  boom(currentCellNo: number): void {
+  private boom(currentCellNo: number): void {
 
     let nb = this.board.filter(x => x.IsRedFlagVisible).length;
 
@@ -326,14 +326,14 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
   }
 
   // get the board position by cell coord
-  getBoardPos(coords: CellCoords): number {
+  private getBoardPos(coords: CellCoords): number {
     const rv = ((coords.RowPos - 1) * this.GameOption.NbCol) + (coords.ColPos - 1);
 
     return rv;
   }
 
   // get cell coord by board position
-  getCellCoord(no: number): CellCoords {
+  private getCellCoord(no: number): CellCoords {
     const cc = new CellCoords();
 
     cc.RowPos = Math.floor(no / this.GameOption.NbCol) + 1;
@@ -343,7 +343,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
   }
 
   // add the required bombs anywhere randomly on the board
-  setBombs(firstClickedCellNo: number): void {
+  private setBombs(firstClickedCellNo: number): void {
     if (this.GameOption.NbBomb < this.board.length) {
       for (let i = 0; i < this.GameOption.NbBomb; i++) {
         let pos = this.getRandomPos();
@@ -355,7 +355,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
     }
   }
 
-  computeSurroundingBoardPos(coords: CellCoords): number[] {
+  private computeSurroundingBoardPos(coords: CellCoords): number[] {
     const surroundingBoardPos: number[] = [];
 
     this.azimuth.forEach((aziStr) => {
@@ -369,7 +369,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
   }
 
   // select text color by bomb count
-  getStyleColorByNbBomb(nbBomb: number): object {
+  private getStyleColorByNbBomb(nbBomb: number): object {
     let rv = {};
 
     switch (nbBomb) {

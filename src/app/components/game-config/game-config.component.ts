@@ -17,7 +17,7 @@ export class GameConfigComponent  {
 
   // event handlers
 
-  inputModified = (): void => {
+  public inputModified = (): void => {
     this.optionChanged.emit(this.GameOption);
   }
 
