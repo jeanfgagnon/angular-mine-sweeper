@@ -22,6 +22,7 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
   elapsed = 0;
   gameOver = false;
   running = false;
+  win = false;
   azimuth = ['ne', 'n', 'nw', 'w', 'e', 'sw', 's', 'se'];
   timerHandler: any = 0;
 
@@ -95,10 +96,11 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
     this.running = false;
     this.flagCount = 0;
     this.elapsed = 0;
+    this.win = false;
   }
 
   private cellLeftClick(index: number): void {
-    if (!this.gameOver) {
+    if (!this.gameOver && !this.win) {
       if (!this.running) {
         this.running = true;
         this.bombSetup(index);
@@ -128,7 +130,17 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
         }
       }
     }
+
+    if (this.boardAllCleared()) {
+      this.winGame();
+    }
+
   } // cellLeftClick
+
+  private boardAllCleared(): boolean {
+    const nbCleared = this.board.filter(x => x.IsCleared).length;
+    return (nbCleared >= this.board.length - this.GameOption.NbBomb);
+  }
 
   private cellRightClick(index: number): void {
     if (this.running && !this.gameOver && !this.board[index].IsCleared) {
@@ -161,7 +173,13 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
   private stopGame = (): void => {
     clearInterval(this.timerHandler);
     this.running = false;
-    this.gameOver = true
+    this.gameOver = true;
+  }
+
+  private winGame = (): void => {
+    clearInterval(this.timerHandler);
+    this.running = false;
+    this.win = true;
   }
 
   // set bombs on board on first click

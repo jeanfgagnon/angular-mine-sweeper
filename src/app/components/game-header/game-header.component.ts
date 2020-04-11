@@ -13,6 +13,7 @@ export class GameHeaderComponent {
   private _flagCount = 0;
   private _elapsed = 0;
   private _gameOver = false;
+  private _win = false;
 
   @Output() toggleConfigClick: EventEmitter<any> = new EventEmitter();
   @Output() restartClick: EventEmitter<any> = new EventEmitter();
@@ -33,7 +34,10 @@ export class GameHeaderComponent {
 
   public gameStatus = () : string => {
     let rv = '';
-    if (this.GameOver) {
+    if (this.Win) {
+      rv = "WINNER!";
+    }
+    else if (this.GameOver) {
       if (this.Elapsed >= this.GameOption.MaxSec) {
         rv = 'TIMEOUT!';
       }
@@ -85,12 +89,18 @@ export class GameHeaderComponent {
     return this._elapsed;
   }
 
-  // game over, boom, timeout or win
+  // game over, boom or timeout
   @Input() set GameOver(value: boolean) {
     this._gameOver = value;
   }
   get GameOver(): boolean {
     return this._gameOver;
   }
-  
+
+  @Input() set Win(value: boolean) {
+    this._win = value;
+  }
+  get Win(): boolean {
+    return this._win;
+  }
 } // class
