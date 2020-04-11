@@ -110,7 +110,6 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
       if (!this.board[index].IsRedFlagVisible) {
         if (this.board[index].IsBomb) {
           // boom
-          console.log('boom!');
           this.boom(index);
           this.stopGame();
         }
@@ -239,7 +238,6 @@ export class GameFormComponent implements OnInit, AfterViewInit, AfterViewChecke
           let pos = this.getRandomPos();
           while (pos === firstClickedCellNo || surroundingBoardPos.indexOf(pos) !== -1 || this.board[pos].IsBomb) {
             pos = this.getRandomPos();
-            console.log('moving bomb from %s %s to %s', aziStr, curPos, pos);
           }
           this.board[pos].IsBomb = true;
         }

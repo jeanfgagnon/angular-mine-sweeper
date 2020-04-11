@@ -31,7 +31,8 @@
       </div>
       <div class='gc-input-zone'>
         <input type='number' id='txtBomb' name='txtBomb' class='gc-input' min='10' 
-          [(ngModel)]="GameOption.NbBomb" (change)="inputModified()" />
+          [(ngModel)]="GameOption.NbBomb" (change)="inputModified()" /><br>
+          <div class='gc-bomb-error' *ngIf="!validateBombCount()">Max: {{ MaxBomb }}</div>
       </div>
     </div>
 

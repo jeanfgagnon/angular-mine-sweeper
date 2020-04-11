@@ -7,7 +7,7 @@ import { GameOption } from 'src/app/common/GameOption';
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.scss']
 })
-export class GameConfigComponent  {
+export class GameConfigComponent {
 
   private _gameOption: GameOption;
 
@@ -18,10 +18,24 @@ export class GameConfigComponent  {
   // event handlers
 
   public inputModified = (): void => {
-    this.optionChanged.emit(this.GameOption);
+    if (this.validateBombCount()) {
+      this.optionChanged.emit(this.GameOption);
+    }
+  }
+
+
+  // private code
+
+  // Max bomb count must be: board size minus 10
+  validateBombCount(): boolean {
+    return this.GameOption.NbBomb <= this.MaxBomb;
   }
 
   // properties
+
+  get MaxBomb(): number {
+    return (this.GameOption.NbCol * this.GameOption.NbRow) - 10;
+  }
 
   @Input() set GameOption(value: GameOption) {
     this._gameOption = Object.assign({}, value);
